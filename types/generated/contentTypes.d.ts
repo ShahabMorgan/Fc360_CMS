@@ -373,6 +373,43 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiCampCamp extends Struct.CollectionTypeSchema {
+  collectionName: 'camps';
+  info: {
+    displayName: 'Camp';
+    pluralName: 'camps';
+    singularName: 'camp';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    address: Schema.Attribute.Text & Schema.Attribute.Required;
+    banner: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    date: Schema.Attribute.String & Schema.Attribute.Required;
+    googleMap: Schema.Attribute.String & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::camp.camp'> &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    register: Schema.Attribute.Boolean & Schema.Attribute.Required;
+    registerForm: Schema.Attribute.String & Schema.Attribute.Required;
+    state: Schema.Attribute.Enumeration<['ACTIVE', 'PAST']> &
+      Schema.Attribute.DefaultTo<'ACTIVE'>;
+    surveyForm: Schema.Attribute.String & Schema.Attribute.Required;
+    teaserLink: Schema.Attribute.String & Schema.Attribute.Required;
+    time: Schema.Attribute.String & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiCompetitionCompetition extends Struct.CollectionTypeSchema {
   collectionName: 'competitions';
   info: {
@@ -384,7 +421,7 @@ export interface ApiCompetitionCompetition extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    address: Schema.Attribute.String & Schema.Attribute.Required;
+    address: Schema.Attribute.Text & Schema.Attribute.Required;
     banner: Schema.Attribute.Media<'images' | 'files'> &
       Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
@@ -925,6 +962,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::camp.camp': ApiCampCamp;
       'api::competition.competition': ApiCompetitionCompetition;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

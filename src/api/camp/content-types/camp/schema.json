@@ -1,16 +1,20 @@
 {
   "kind": "collectionType",
-  "collectionName": "competitions",
+  "collectionName": "camps",
   "info": {
-    "singularName": "competition",
-    "pluralName": "competitions",
-    "displayName": "Competition"
+    "singularName": "camp",
+    "pluralName": "camps",
+    "displayName": "Camp"
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
     "banner": {
       "type": "media",
       "multiple": false,
@@ -20,25 +24,60 @@
         "files"
       ]
     },
+    "registerForm": {
+      "type": "string",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "register"
+            },
+            true
+          ]
+        }
+      },
+      "required": true
+    },
+    "surveyForm": {
+      "type": "string",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "state"
+            },
+            "PAST"
+          ]
+        }
+      },
+      "required": true
+    },
     "state": {
       "type": "enumeration",
-      "required": true,
       "default": "ACTIVE",
       "enum": [
         "ACTIVE",
         "PAST"
       ]
     },
-    "title": {
-      "type": "string",
-      "required": true
-    },
     "date": {
       "type": "string",
       "required": true
     },
-    "registerForm": {
+    "time": {
       "type": "string",
+      "required": true
+    },
+    "address": {
+      "type": "text",
+      "required": true
+    },
+    "googleMap": {
+      "type": "string",
+      "required": true
+    },
+    "register": {
+      "type": "boolean",
       "conditions": {
         "visible": {
           "==": [
@@ -53,47 +92,6 @@
     },
     "teaserLink": {
       "type": "string",
-      "required": true
-    },
-    "time": {
-      "type": "string",
-      "required": true
-    },
-    "address": {
-      "type": "text",
-      "required": true
-    },
-    "googleMap": {
-      "type": "string",
-      "required": false
-    },
-    "register": {
-      "type": "boolean",
-      "conditions": {
-        "visible": {
-          "==": [
-            {
-              "var": "state"
-            },
-            "ACTIVE"
-          ]
-        }
-      },
-      "required": true,
-      "default": false
-    },
-    "surveyForm": {
-      "type": "string",
-      "conditions": {
-        "visible": {
-          "==": [
-            {
-              "var": "state"
-            },
-            "PAST"
-          ]
-        }
-      },
       "required": true
     }
   }
