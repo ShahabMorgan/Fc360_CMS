@@ -15,19 +15,13 @@
       "type": "media",
       "multiple": false,
       "required": true,
-      "allowedTypes": [
-        "images",
-        "files"
-      ]
+      "allowedTypes": ["images", "files"]
     },
     "state": {
       "type": "enumeration",
       "required": true,
       "default": "ACTIVE",
-      "enum": [
-        "ACTIVE",
-        "PAST"
-      ]
+      "enum": ["ACTIVE", "PAST"]
     },
     "title": {
       "type": "string",
